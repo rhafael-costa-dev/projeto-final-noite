@@ -21,5 +21,5 @@ public abstract class BaseDao<T> {
             logger.error("Ocorreu um erro ao tentar salvar os dados da tarefa no arquivo.", ex);
         }
     }
-    public abstract List<T> listar(String fileName);
+    //public abstract List<T> listar(String fileName);
 }

@@ -35,6 +35,9 @@ public class ToDoListView {
             case 1:
                 cadastrar(scanner);
                 break;
+            case 4:
+                exibirTarefas();
+                break;
 
             default:
                 System.out.println("Opção invalida! Escolha uma opção valida de acordo com o Menu");
@@ -63,7 +66,17 @@ public class ToDoListView {
         } catch (Exception ex) {
 
         }
+    }
 
+    public static void exibirTarefas() {
+        var tarefas = ToDoListController.listar();
+        System.out.println("###########################");
+        tarefas.forEach(t -> {
+            System.out.println("UUID: " + t.getUuid());
+            System.out.println("Titulo: " + t.getTitulo());
+            System.out.println("------------------------");
+        });
+        System.out.println("###########################");
     }
 
 }
