@@ -22,8 +22,9 @@ public class Util {
             return numero;
         } catch (InputMismatchException ex) {
             logger.error("Ocorreu um erro ao tentar ler um núemro inteiro", ex);
-            scanner.next();
             return 99;
+        } finally {
+            scanner.nextLine();
         }
     }
 }

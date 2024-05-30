@@ -10,8 +10,8 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String name) {
-        this.uuid = UUID.randomUUID();
+    public Usuario(UUID uuid, String name) {
+        this.uuid = uuid;
         this.name = name;
     }
 
