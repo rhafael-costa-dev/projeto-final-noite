@@ -31,10 +31,10 @@ public class Main {
                 System.out.println("Tchauuuu Obrigado!");
                 break;
             case 1:
-                ToDoListView.exibirMenu(scanner);
+                ToDoListView.iniciar(scanner);
                 break;
             case 2:
-                ToDoListView.exibirMenu(scanner);
+                ToDoListView.iniciar(scanner);
                 break;
             case 99:
                 System.out.println("Opção invalida. Tente novamente!");

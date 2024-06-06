@@ -2,7 +2,7 @@ package br.edu.up.todolist.models;
 
 import java.util.UUID;
 
-public class Tarefa implements FormataDado {
+public class Tarefa implements FormatacaoEscrita {
     private UUID uuid;
 
     private String titulo;
@@ -62,8 +62,14 @@ public class Tarefa implements FormataDado {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public void atualizarDados(Tarefa tarefa) {
+        this.descricao = tarefa.getDescricao();
+        this.prioridade =  tarefa.prioridade;
+    }
+
     @Override
-    public String formatacao() {
+    public String dadoFormatado() {
         return this.uuid+";"+this.titulo+";"+this.descricao+";"+this.prioridade+";"+this.usuario.getUuid();
     }
 }
