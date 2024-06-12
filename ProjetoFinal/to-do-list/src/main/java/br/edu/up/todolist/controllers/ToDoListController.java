@@ -1,6 +1,7 @@
 package br.edu.up.todolist.controllers;
 
 import br.edu.up.todolist.daos.TarefaDao;
+import br.edu.up.todolist.exceptions.TarefaNotFoundException;
 import br.edu.up.todolist.models.FormatacaoEscrita;
 import br.edu.up.todolist.models.Tarefa;
 import org.apache.logging.log4j.LogManager;
@@ -28,14 +29,13 @@ public class ToDoListController {
      * @param uuid
      * @return
      */
-    public static Tarefa buscarTarefaPorUuid(UUID uuid) {
+    public static Tarefa buscarTarefaPorUuid(UUID uuid) throws TarefaNotFoundException {
         var listaTarefas =  listar();
         Optional<Tarefa> tarefa =  listaTarefas.stream()
                                                .filter(t -> t.getUuid().equals(uuid))
                                                .findFirst();
-        // TODO: Alterar essa linha para lançar exc exception
         if (tarefa.isEmpty()) {
-            return null;
+            throw new TarefaNotFoundException("Nenhuma tarefa encontrada com o UUID: " + uuid);
         }
         return tarefa.get();
     }
@@ -48,7 +48,7 @@ public class ToDoListController {
         TarefaDao.escrever(FILE_NAME, List.of(tarefa), true);
     }
 
-    public static void atualizar(UUID uuid, Tarefa tarefa) {
+    public static void atualizar(UUID uuid, Tarefa tarefa) throws TarefaNotFoundException {
         var t = buscarTarefaPorUuid(uuid);
         // TODO: Alterar essa linha para lançar exc exception
         if (t == null) {
@@ -67,12 +67,9 @@ public class ToDoListController {
      * Método responsável por remover um tarefa
      * @param uuid
      */
-    public static void remover(UUID uuid) {
+    public static void remover(UUID uuid) throws TarefaNotFoundException {
         var tarefa = buscarTarefaPorUuid(uuid);
-        // TODO: Alterar essa linha para lançar exc exception
-        if (tarefa == null) {
-            return;
-        }
+
         var listaAtualizada =  removerTarefaLista(tarefa.getUuid());
         TarefaDao.escrever(FILE_NAME, listaAtualizada, false);
     }

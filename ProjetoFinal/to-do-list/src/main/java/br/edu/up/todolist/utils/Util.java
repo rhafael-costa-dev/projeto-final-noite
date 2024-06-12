@@ -27,4 +27,15 @@ public class Util {
             scanner.nextLine();
         }
     }
+
+    /**
+     * Método responsável por exibir a mensagem de Feedback
+     * @param message
+     */
+    public static void exibirFeedbackMessage(String message) {
+        System.out.println("--------------------------------------");
+        System.out.println(message);
+        System.out.println("--------------------------------------");
+    }
+
 }
